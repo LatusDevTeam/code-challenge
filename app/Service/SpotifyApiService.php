@@ -46,6 +46,13 @@ class SpotifyApiService implements SpotifyApiInterface
         return json_decode($response->getBody(), false);
     }
 
+    public function getInfo(string $type, string $id)
+    {
+        $response = $this->authenticatedRequest('GET', "https://api.spotify.com/v1/{$type}/{$id}");
+
+        return json_decode($response->getBody(), false);
+    }
+
     protected function authenticatedRequest(string $method, string $uri, array $options = []): ResponseInterface
     {
         $token = $this->getToken();

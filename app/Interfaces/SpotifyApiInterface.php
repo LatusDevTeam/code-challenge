@@ -12,4 +12,6 @@ interface SpotifyApiInterface
     
     public function searchAlbums(string $search);
     
+    public function getInfo(string $type, string $id);
+    
 }

@@ -26,4 +26,11 @@ class SearchController extends Controller
             'albums' => $search->albums->items,
         ]);
     }
+
+    public function info(string $type, string $id, SpotifyApiInterface $spotify)
+    {
+        $item = $spotify->getInfo($type, $id);
+
+        return view('info', ['item' => $item]);
+    }
 }

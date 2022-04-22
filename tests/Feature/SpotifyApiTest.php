@@ -38,6 +38,20 @@ class SpotifyApiTest extends TestCase
         $service->search('Mini Cooper', ['vehicles']);
     }
 
+    public function test_get_info()
+    {
+        $service = $this->getService();
+        $result = $service->getInfo('artists', '1Ffb6ejR6Fe5IamqA5oRUF');
+        $this->assertContains('Bring Me The Horizon', $result->name, '', true);
+    }
+
+    public function test_invalid_get_info()
+    {
+        $service = $this->getService();
+        $this->expectException(ClientException::class);
+        $service->getInfo('vehicles', 'Mini Cooper');
+    }
+
     private function getService(): SpotifyApiInterface
     {
         return app(SpotifyApiInterface::class);

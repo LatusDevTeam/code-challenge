@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <title>Code Challenge</title>
     <style>
@@ -39,10 +40,13 @@
         <label for="search-box"><img alt="logo" src="/img/logo.svg" class="img" /></label>
     </div>
     <div class="search">
+        @if(session('error'))
+            <p class="text-red-400 my-2">{{ session('error') }}</p>
+        @endif
         <form method="post" action="/search">
             {{csrf_field()}}
             <input id="search-box" name="query" type="text" placeholder="search term" />
-            <button type="submit">Search for Artists</button>
+            <button type="submit">Search Spotify</button>
 
         </form>
     </div>
